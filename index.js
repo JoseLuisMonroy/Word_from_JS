@@ -29,10 +29,14 @@ const doc = new docx.Document({
                     new Paragraph({
                         children: [
                             new ImageRun({
-                                data: fs.readFileSync("./images/pokemon.jpeg").toString("base64"),
+                                data: fs.readFileSync("./images/pokemon.jpeg"),
                                 transformation: {
                                     width: 100,
                                     height: 100,
+                                    flip: {
+                                        horizontal: true,
+                                    },
+                                    rotation: 225,
                                 },
                             }),
                         ],
