@@ -1,7 +1,6 @@
 const docx = require('docx');
 const fs = require('fs');
-const { Paragraph } = docx;
-
+const { Paragraph, ImageRun } = docx;
 
 const doc = new docx.Document({
     sections: [{
@@ -16,8 +15,31 @@ const doc = new docx.Document({
                     }),
                 ],
             }),
-            new Paragraph("Metodo para crear texto sin estilos")
-        ],
+            new Paragraph("Metodo para crear texto sin estilos"),
+            new Paragraph("Inserción básica de imagen"),
+            new Paragraph({
+                children: [
+                    new ImageRun({
+                        data: fs.readFileSync("./images/index.png"),
+                        transformation: {
+                            width: 100,
+                            height: 100,
+                        },
+                    }),
+                    new Paragraph({
+                        children: [
+                            new ImageRun({
+                                data: fs.readFileSync("./images/pokemon.jpeg").toString("base64"),
+                                transformation: {
+                                    width: 100,
+                                    height: 100,
+                                },
+                            }),
+                        ],
+                    }),
+                ],
+            }),
+        ]
     }, ],
 });
 
