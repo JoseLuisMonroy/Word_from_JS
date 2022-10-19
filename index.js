@@ -1,5 +1,7 @@
 const docx = require('docx');
 const fs = require('fs');
+const { Paragraph } = docx;
+
 
 const doc = new docx.Document({
     sections: [{
@@ -14,6 +16,7 @@ const doc = new docx.Document({
                     }),
                 ],
             }),
+            new Paragraph("Metodo para crear texto sin estilos")
         ],
     }, ],
 });
