@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/JoseLuisMonroy/Word_from_JS/issues"
   },
-  "homepage": "https://github.com/JoseLuisMonroy/Word_from_JS#readme"
+  "homepage": "https://github.com/JoseLuisMonroy/Word_from_JS#readme",
+  "dependencies": {
+    "docx": "^7.5.0"
+  }
 }
