@@ -1,6 +1,6 @@
 const docx = require('docx');
 const fs = require('fs');
-const { Paragraph, ImageRun, TableRow, TableCell, Table, SectionType } = docx;
+const { Paragraph, ImageRun, TableRow, TableCell, Table, TextRun } = docx;
 
 const table = new Table({
     rows: [
@@ -21,6 +21,75 @@ const table = new Table({
         }),
     ],
 });
+
+const table2 = new Table({
+    rows: [
+        new TableRow({
+            children: [
+                new TableCell({
+                    children: [new Paragraph("Imagen")],
+                }),
+                new TableCell({
+                    children: [new Paragraph("Descripción")],
+                }),
+                new TableCell({
+                    children: [new Paragraph("Ruta")],
+                }),
+            ],
+        }),
+        new TableRow({
+            children: [
+                new TableCell({
+                    children: [
+                        new Paragraph({
+                            children: [
+                                new ImageRun({
+                                    data: fs.readFileSync("./images/pokemon.jpeg"),
+                                    transformation: {
+                                        width: 100,
+                                        height: 100,
+                                    },
+                                }),
+                            ],
+                        }),
+                    ],
+                }),
+                new TableCell({
+                    children: [new Paragraph("Imagen de pokemon")],
+                }),
+                new TableCell({
+                    children: [new Paragraph("/images/pokemon.jpeg")],
+                }),
+            ],
+        }),
+        new TableRow({
+            children: [
+                new TableCell({
+                    children: [
+                        new Paragraph({
+                            children: [
+                                new ImageRun({
+                                    data: fs.readFileSync("./images/index.png"),
+                                    transformation: {
+                                        width: 100,
+                                        height: 100,
+                                    },
+                                }),
+                            ],
+                        }),
+                    ],
+                }),
+                new TableCell({
+                    children: [new Paragraph("Pikachu")],
+                }),
+                new TableCell({
+                    children: [new Paragraph("/images/index.png")],
+                }),
+            ],
+        }),
+    ],
+});
+
 
 const doc = new docx.Document({
     sections: [{
@@ -70,11 +139,35 @@ const doc = new docx.Document({
         },
         {
             children: [
-                new Paragraph("Inserción de tabla"),
-                table,
-            ],
+                new Paragraph({
+                    children: [
+                        new TextRun({
+                            text: "Inserción de tabla simple",
+                            bold: true,
+                        }),
+                    ],
+                }, )
+            ]
         },
-    ]
+        {
+            children: [table],
+        },
+        {
+            children: [
+                new Paragraph({
+                    children: [
+                        new TextRun({
+                            text: "Inserción de tabla con imagenes",
+                            bold: true,
+                        }),
+                    ],
+                }, )
+            ]
+        },
+        {
+            children: [table2],
+        },
+    ],
 });
 
 docx.Packer.toBuffer(doc).then((buffer) => {
