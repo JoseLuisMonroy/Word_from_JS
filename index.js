@@ -1,6 +1,6 @@
 const docx = require('docx');
 const fs = require('fs');
-const { Paragraph, ImageRun, TableRow, TableCell, Table, TextRun } = docx;
+const { Paragraph, ImageRun, TableRow, TableCell, Table, TextRun, VerticalAlign } = docx;
 
 const table = new Table({
     rows: [
@@ -28,12 +28,15 @@ const table2 = new Table({
             children: [
                 new TableCell({
                     children: [new Paragraph("Imagen")],
+                    verticalAlign: VerticalAlign.CENTER
                 }),
                 new TableCell({
                     children: [new Paragraph("Descripción")],
+                    verticalAlign: VerticalAlign.CENTER
                 }),
                 new TableCell({
                     children: [new Paragraph("Ruta")],
+                    verticalAlign: VerticalAlign.CENTER
                 }),
             ],
         }),
@@ -56,9 +59,11 @@ const table2 = new Table({
                 }),
                 new TableCell({
                     children: [new Paragraph("Imagen de pokemon")],
+                    verticalAlign: VerticalAlign.CENTER
                 }),
                 new TableCell({
                     children: [new Paragraph("/images/pokemon.jpeg")],
+                    verticalAlign: VerticalAlign.CENTER
                 }),
             ],
         }),
@@ -81,9 +86,12 @@ const table2 = new Table({
                 }),
                 new TableCell({
                     children: [new Paragraph("Pikachu")],
+                    verticalAlign: VerticalAlign.CENTER
+
                 }),
                 new TableCell({
                     children: [new Paragraph("/images/index.png")],
+                    verticalAlign: VerticalAlign.CENTER
                 }),
             ],
         }),
