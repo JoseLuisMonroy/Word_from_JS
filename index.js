@@ -35,6 +35,10 @@ const doc = new docx.Document({
                     ],
                 }),
                 new Paragraph("Metodo para crear texto sin estilos"),
+            ]
+        },
+        {
+            children: [
                 new Paragraph("Inserción básica de imagen"),
                 new Paragraph({
                     children: [
